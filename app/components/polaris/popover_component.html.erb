@@ -20,7 +20,8 @@
             <% else %>
               <%= render Polaris::Popover::PaneComponent.new(
                 sectioned: @sectioned,
-                scrollable_shadow: @scrollable_shadow
+                scrollable_shadow: @scrollable_shadow,
+                **@pane_arguments
               ) do %>
                 <%= content %>
               <% end %>

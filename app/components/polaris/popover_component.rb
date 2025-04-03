@@ -29,6 +29,7 @@ module Polaris
       append_to_body: false,
       scrollable_shadow: true,
       text_field_activator: false,
+      pane_arguments: {},
       wrapper_arguments: {},
       **system_arguments
     )
@@ -45,6 +46,7 @@ module Polaris
       @text_field_activator = text_field_activator
       @append_to_body = append_to_body
       @wrapper_arguments = wrapper_arguments
+      @pane_arguments = pane_arguments
       @system_arguments = system_arguments
       @popover_arguments = {}
       @content_arguments = {}
