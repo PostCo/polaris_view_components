@@ -199,6 +199,11 @@ class Autocomplete extends Controller {
   select(event) {
     const input = event.currentTarget;
     const label = input.closest("li").dataset.label;
+    if (!this.multipleValue) {
+      this.popoverController.forceHide();
+      this.inputTarget.value = label;
+      if (this.hasHiddenInputTarget) this.hiddenInputTarget.value = input.value;
+    }
     const changeEvent = new CustomEvent("polaris-autocomplete:change", {
       detail: {
         value: input.value,
@@ -207,11 +212,6 @@ class Autocomplete extends Controller {
       }
     });
     this.element.dispatchEvent(changeEvent);
-    if (!this.multipleValue) {
-      this.popoverController.forceHide();
-      this.inputTarget.value = label;
-      if (this.hasHiddenInputTarget) this.hiddenInputTarget.value = input.value;
-    }
   }
   onInputChange=debounce((() => {
     if (this.isRemote) {
