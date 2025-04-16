@@ -4,7 +4,7 @@ import { debounce } from './utils'
 
 export default class extends Controller {
   static targets = ['popover', 'input', 'hiddenInput', 'results', 'option', 'emptyState', 'fetchingState']
-  static values = { multiple: Boolean, url: String, selected: Array, addInputEventListener: Boolean }
+  static values = { multiple: Boolean, url: String, selected: Array, selectedLabel: Array, addInputEventListener: Boolean }
 
   connect() {
     if (this.addInputEventListenerValue) {
@@ -29,12 +29,25 @@ export default class extends Controller {
   select(event) {
     const input = event.currentTarget
     const label = input.closest('li').dataset.label
-    if (!this.multipleValue) {
+    if (this.multipleValue) {
+      if (input.checked) {
+        this.selectedValue = [...this.selectedValue, input.value]
+        this.selectedLabelValue = [...this.selectedLabelValue, label]
+      } else {
+        this.selectedValue = this.selectedValue.filter(value => value !== input.value)
+        this.selectedLabelValue = this.selectedLabelValue.filter(selectedLabel => selectedLabel !== label)
+      }
+
+      this.inputTarget.value = this.selectedLabelValue.join(", ")
+      if (this.hasHiddenInputTarget)
+        this.hiddenInputTarget.value = this.selectedValue.join(",")
+    } else {
       this.popoverController.forceHide()
       this.inputTarget.value = label
       if (this.hasHiddenInputTarget)
         this.hiddenInputTarget.value = input.value
     }
+
 
     const changeEvent = new CustomEvent('polaris-autocomplete:change', {
       detail: { value: input.value, label, selected: input.checked }

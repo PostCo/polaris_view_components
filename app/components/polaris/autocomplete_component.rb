@@ -32,6 +32,7 @@ module Polaris
       url: nil,
       add_input_event_listener: true,
       selected: [],
+      selected_label: [],
       popover_arguments: {},
       **system_arguments
     )
@@ -42,6 +43,7 @@ module Polaris
       @url = url
       @add_input_event_listener = add_input_event_listener
       @selected = selected
+      @selected_label = selected_label
       @popover_arguments = popover_arguments
       @system_arguments = system_arguments
     end
@@ -62,6 +64,7 @@ module Polaris
           opts[:data][:polaris_autocomplete_url_value] = @url
         end
         opts[:data][:polaris_autocomplete_selected_value] = @selected
+        opts[:data][:polaris_autocomplete_selected_label_value] = @selected_label
         opts[:data][:polaris_autocomplete_add_input_event_listener_value] = @add_input_event_listener
         opts[:data][:polaris_autocomplete_multiple_value] = @multiple if @multiple.present?
       end
