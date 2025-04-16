@@ -7,6 +7,13 @@ export default class extends Controller {
   static values = { multiple: Boolean, url: String, selected: Array, selectedLabel: Array, addInputEventListener: Boolean }
 
   connect() {
+    if (this.multipleValue) {
+      // Reset the hiddenInput value, as it just join them with empty space instead of comma
+      if (this.hasHiddenInputTarget) {
+        this.hiddenInputTarget.value = this.selectedValue.join(",")
+      }
+    }
+
     if (this.addInputEventListenerValue) {
       this.inputTarget.addEventListener("input", this.onInputChange)
     }
