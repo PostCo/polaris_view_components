@@ -132,6 +132,7 @@
             alignment: :center,
             vertical: !@multiple,
             spacing: @multiple ? :default : :tight,
+            wrap: false
           ) do |stack| %>
             <% stack.with_item do %>
               <%= polaris_thumbnail(
