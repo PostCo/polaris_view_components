@@ -12,6 +12,7 @@ export default class extends Controller {
 
     let tooltip = document.createElement("span");
     tooltip.className = "Polaris-Tooltip";
+    tooltip.style.zIndex = 9999;
     tooltip.innerHTML = this.templateTarget.innerHTML;
     document.body.appendChild(tooltip); // Append tooltip to body for better positioning control
     this.tooltip = tooltip;

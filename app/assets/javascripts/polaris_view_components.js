@@ -2523,6 +2523,7 @@ class Tooltip extends Controller {
     const element = event.currentTarget;
     let tooltip = document.createElement("span");
     tooltip.className = "Polaris-Tooltip";
+    tooltip.style.zIndex = 9999;
     tooltip.innerHTML = this.templateTarget.innerHTML;
     document.body.appendChild(tooltip);
     this.tooltip = tooltip;

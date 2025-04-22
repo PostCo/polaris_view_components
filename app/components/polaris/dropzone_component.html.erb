@@ -102,7 +102,15 @@
           <span class="target"></span>
         <% else %>
           <%= polaris_stack(vertical: true, style: "width: 100%;") do %>
-            <span class="target"></span>
+            <% if @multiple %>
+              <div style="display: flex; margin: 8px 0px; justify-content: end;">
+                <span style="cursor:pointer; color: #004299;">
+                  + Add more images
+                </span>
+              </div>
+            <% end %>
+            <span class="target">
+            </span>
           <% end %>
         <% end %>
       <% end %>
